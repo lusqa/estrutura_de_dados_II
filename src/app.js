@@ -1,9 +1,8 @@
-import Node from './components/tree/node'
+import Three from './components/tree/binarySource'
 
-let root = new Node(13)
+const three = new Three()
+const keys = [13, 10, 20, 40, 21, 8, 9]
 
-root.leftChild = new Node(7)
-root.leftChild.parent = root
+keys.forEach(key => three.add(key))
 
-root.rightChild = new Node(22)
-root.rightChild.parent = root
+console.log({ three })

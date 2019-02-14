@@ -1,10 +1,10 @@
 class Node {
-    constructor(key, leftChild = null, rightChild = null, parent = null) {
-        this.key = key
-        this.leftChild = leftChild
-        this.rightChild = rightChild
-        this.parent = parent
-    }
+  constructor (key, parent = null, leftChild = null, rightChild = null) {
+    this.key = key
+    this.parent = parent
+    this.leftChild = leftChild
+    this.rightChild = rightChild
+  }
 }
 
 export default Node
