@@ -32,13 +32,13 @@ class BinarySourceThree {
   isLeaf (node) {
     return !node.leftChild && !node.rightChild
   }
-
-  isRightChild (node) {
-
+  
+  isLeftChild (node) {
+    return node.parent.leftChild === node
   }
 
-  isLeftChild (node) {
-
+  isRightChild (node) {
+    return node.parent.rightChild === node
   }
 }
 
