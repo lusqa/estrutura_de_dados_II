@@ -11,31 +11,26 @@ class BinarySourceThree {
 
   _addNode (node, key) {
     const child = key <= node.key ? 'leftChild' : 'rightChild'
-    !node[child] ? node[child] = new Node(key, node) : this._addNode(node[child], key)
+    !node[child] ? node[child] = new Node(key, node)
+      : this._addNode(node[child], key)
   }
 
-  hasBothChildren (node) {
-    return !!node.leftChild && !!node.rightChild
+  search (key) {
+    return this._searchNode(this.root, key)
   }
 
-  hasLeftChild (node) {
-    return !!node.leftChild
-  }
+  _searchNode (node, key) {
+    if (!node) return null
 
-  hasRightChild (node) {
-    return !!node.rightChild
-  }
+    if (key < node.key) {
+      this._searchNode(node.leftChild, key)
+    }
 
-  isLeaf (node) {
-    return !node.leftChild && !node.rightChild
-  }
+    if (key > node.key) {
+      this._searchNode(node.rightChild, key)
+    }
 
-  isLeftChild (node) {
-    return node.parent.leftChild === node
-  }
-
-  isRightChild (node) {
-    return node.parent.rightChild === node
+    return node
   }
 }
 
