@@ -32,6 +32,42 @@ class BinarySourceThree {
 
     return node
   }
+
+  preOrderNode (node) {
+    console.log(node.key)
+
+    if (node.hasLeftChild()) {
+      this.preOrderNode(node.leftChild)
+    }
+
+    if (node.hasRightChild()) {
+      this.preOrderNode(node.rightChild)
+    }
+  }
+
+  posOrderNode (node) {
+    if (node.hasLeftChild()) {
+      this.preOrderNode(node.leftChild)
+    }
+
+    if (node.hasRightChild()) {
+      this.preOrderNode(node.rightChild)
+    }
+
+    console.log(node.key)
+  }
+
+  inOrderNode (node) {
+    if (node.hasLeftChild()) {
+      this.preOrderNode(node.leftChild)
+    }
+
+    console.log(node.key)
+
+    if (node.hasRightChild()) {
+      this.preOrderNode(node.rightChild)
+    }
+  }
 }
 
 export default BinarySourceThree

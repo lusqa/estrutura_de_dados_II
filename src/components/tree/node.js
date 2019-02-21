@@ -31,11 +31,11 @@ class Node {
   }
 
   isLeftChild () {
-    return this.parent.leftChild === this
+    return !this.isRoot() ? this.parent.leftChild === this : false
   }
 
   isRightChild () {
-    return this.parent.rightChild === this
+    return !this.isRoot() ? this.parent.rightChild === this : false
   }
 }
 
