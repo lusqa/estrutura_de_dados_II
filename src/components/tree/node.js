@@ -7,7 +7,7 @@ class Node {
   }
 
   depth () {
-    return this.isRoot() ? 0 : this.parent.isRoot() + 1
+    return this.isRoot() ? 0 : this.parent.depth() + 1
   }
 
   hasBothChildren () {

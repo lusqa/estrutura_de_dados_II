@@ -1,4 +1,6 @@
 import Node from './node'
+import { searchNode, addNode } from './util/nodeOperations'
+import { preOrderNode, posOrderNode, inOrderNode, breadthFirstSearchNode } from './util/orderOperations'
 
 class BinarySourceThree {
   constructor () {
@@ -6,67 +8,27 @@ class BinarySourceThree {
   }
 
   add (key) {
-    !this.root ? this.root = new Node(key) : this._addNode(this.root, key)
-  }
-
-  _addNode (node, key) {
-    const child = key <= node.key ? 'leftChild' : 'rightChild'
-    !node[child] ? node[child] = new Node(key, node)
-      : this._addNode(node[child], key)
+    !this.root ? this.root = new Node(key) : addNode(this.root, key)
   }
 
   search (key) {
-    return this._searchNode(this.root, key)
+    return searchNode(this.root, key)
   }
 
-  _searchNode (node, key) {
-    if (!node) return null
-
-    if (key < node.key) {
-      this._searchNode(node.leftChild, key)
-    }
-
-    if (key > node.key) {
-      this._searchNode(node.rightChild, key)
-    }
-
-    return node
+  preOrder (operation) {
+    preOrderNode(this.root, operation)
   }
 
-  preOrderNode (node) {
-    console.log(node.key)
-
-    if (node.hasLeftChild()) {
-      this.preOrderNode(node.leftChild)
-    }
-
-    if (node.hasRightChild()) {
-      this.preOrderNode(node.rightChild)
-    }
+  posOrder (operation) {
+    posOrderNode(this.root, operation)
   }
 
-  posOrderNode (node) {
-    if (node.hasLeftChild()) {
-      this.preOrderNode(node.leftChild)
-    }
-
-    if (node.hasRightChild()) {
-      this.preOrderNode(node.rightChild)
-    }
-
-    console.log(node.key)
+  inOrder (operation) {
+    inOrderNode(this.root, operation)
   }
 
-  inOrderNode (node) {
-    if (node.hasLeftChild()) {
-      this.preOrderNode(node.leftChild)
-    }
-
-    console.log(node.key)
-
-    if (node.hasRightChild()) {
-      this.preOrderNode(node.rightChild)
-    }
+  breadthFirstSearch (operation) {
+    breadthFirstSearchNode(this.root, operation)
   }
 }
 
