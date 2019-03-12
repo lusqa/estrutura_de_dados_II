@@ -27,11 +27,11 @@ class BinarySourceThree {
     if (!node) return null
 
     if (key < node.key) {
-      this._searchNode(node.leftChild, key)
+      return this._searchNode(node.leftChild, key)
     }
 
     if (key > node.key) {
-      this._searchNode(node.rightChild, key)
+      return this._searchNode(node.rightChild, key)
     }
 
     return node
@@ -102,6 +102,47 @@ class BinarySourceThree {
     console.log(x)
 
     // console.log(`${' '.repeat(x)} ${this.root.key}`) /* ${'\n'.repeat(y)} */
+  }
+
+  minimum () {
+    return this._minimumNode(this.root)
+  }
+
+  _minimumNode (node) {
+
+  }
+
+  maximum () {
+    return this._maxmimumNode(this.root)
+  }
+
+  _maxmimumNode () {
+
+  }
+
+  remove (key) {
+    const found = this.search(key)
+
+    if (found) {
+      if (found.isLeaf()) {
+        const child = found.isLeftChild() ? 'leftChild' : 'rightChild'
+        found.parent[child] = null
+        found.parent = null
+      } else if (found.hasBothChildren()) {
+
+      } else {
+        const child = found.isLeftChild() ? 'leftChild' : 'rightChild'
+        const myChild = found.hasLeftChild() ? 'leftChild' : 'rightChild'
+
+        found.parent[child] = found[myChild]
+
+        found[myChild].parent = found.parent
+        found[myChild] = null
+        found.parent = null
+      }
+    }
+
+    return found
   }
 }
 
