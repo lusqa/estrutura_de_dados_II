@@ -109,15 +109,33 @@ class BinarySourceThree {
   }
 
   _minimumNode (node) {
+    if (!node) {
+      return Number.MAX_VALUE
+    }
 
+    let res = node.data
+    let lres = this._minimumNode(node.left)
+    let rres = this._minimumNode(node.right)
+
+    if (lres < res) {
+      res = lres
+    }
+    if (rres < res) {
+      res = rres
+    }
+    return res
   }
 
   maximum () {
     return this._maxmimumNode(this.root)
   }
 
-  _maxmimumNode () {
-
+  _maxmimumNode (node) {
+    let maxNode = node
+    while (maxNode.rightChild) {
+      maxNode = maxNode.rightChild
+    }
+    return maxNode
   }
 
   remove (key) {
