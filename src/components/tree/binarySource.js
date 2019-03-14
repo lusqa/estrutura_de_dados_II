@@ -3,6 +3,7 @@ import Node from './node'
 class BinarySourceThree {
   constructor () {
     this.root = null
+    this.COUNT = 10
   }
 
   add (key) {
@@ -37,6 +38,7 @@ class BinarySourceThree {
     return node
   }
 
+  // Tree Traversals
   preOrder (operation) {
     this._preOrderNode(this.root, operation)
   }
@@ -95,35 +97,31 @@ class BinarySourceThree {
     }
   }
 
-  printTree (operationX) { /* , operationY */
-    let x = operationX()
-    // let y = operationY()
-
-    console.log(x)
-
-    // console.log(`${' '.repeat(x)} ${this.root.key}`) /* ${'\n'.repeat(y)} */
-  }
-
+  // Minimum and Maximum
   minimum () {
     return this._minimumNode(this.root)
   }
 
   _minimumNode (node) {
-    if (!node) {
-      return Number.MAX_VALUE
-    }
+    let minNode = node
 
-    let res = node.data
-    let lres = this._minimumNode(node.left)
-    let rres = this._minimumNode(node.right)
+    if (minNode) {
+      while (minNode.hasLeftChild()) {
+        minNode = minNode.leftChild
+      }
+    }
+    return minNode
+  }
 
-    if (lres < res) {
-      res = lres
+  _minimumNodeRecursive (node) {
+    let minNode = node
+
+    if (minNode) {
+      if (minNode.hasLeftChild()) {
+        minNode = this._minimumNodeRecursive(node.leftChild)
+      }
     }
-    if (rres < res) {
-      res = rres
-    }
-    return res
+    return minNode
   }
 
   maximum () {
@@ -132,8 +130,22 @@ class BinarySourceThree {
 
   _maxmimumNode (node) {
     let maxNode = node
-    while (maxNode.rightChild) {
-      maxNode = maxNode.rightChild
+
+    if (maxNode) {
+      while (maxNode.hasRightChild()) {
+        maxNode = maxNode.rightChild
+      }
+    }
+    return maxNode
+  }
+
+  _maxmimumNodeRecursive (node) {
+    let maxNode = node
+
+    if (maxNode) {
+      if (maxNode.hasRightChild()) {
+        maxNode = this._maxmimumNodeRecursive(node.rightChild)
+      }
     }
     return maxNode
   }
@@ -161,6 +173,9 @@ class BinarySourceThree {
     }
 
     return found
+  }
+
+  printTree () {
   }
 }
 
