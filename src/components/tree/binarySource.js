@@ -175,6 +175,18 @@ class BinarySourceThree {
     return found
   }
 
+  sumKeys () {
+    return this._sumKeysNode(this.root)
+  }
+
+  _sumKeysNode (node) {
+    let sumTotal = 0
+    if (node) {
+      sumTotal = node.key + this._sumKeysNode(node.leftChild) + this._sumKeysNode(node.rightChild)
+    }
+    return sumTotal
+  }
+
   printTree () {
   }
 }

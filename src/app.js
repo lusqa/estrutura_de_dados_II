@@ -8,4 +8,4 @@ keys.forEach(key => tree.add(key))
 // console.log(tree.minimum().key)
 // console.log(tree.maximum().key)
 
-tree.printTree()
+console.log(tree._sumKeysNode(tree.root))
