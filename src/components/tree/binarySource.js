@@ -210,7 +210,15 @@ class BinarySourceThree {
     return sumTotal
   }
 
-  printTree () {
+  height () {
+    return this._heightNode(this.root)
+  }
+
+  _heightNode (node) {
+    if (node) {
+      return node.isLeaf() ? 0
+        : Math.max(this._heightNode(node.leftChild), this._heightNode(node.rightChild)) + 1
+    }
   }
 }
 

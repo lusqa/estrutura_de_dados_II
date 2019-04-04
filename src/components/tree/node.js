@@ -11,14 +11,13 @@ class Node {
   }
 
   height () {
-    if (this.isRoot()) {
+    if (this.isLeaf()) {
       return 0
     } else {
-      const heightLeft = this.leftChild.height()
-      const heightRight = this.rightChild.height()
+      const left = this.hasLeftChild() ? this.leftChild.height() : 0
+      const right = this.hasRightChild() ? this.rightChild.height() : 0
 
-      const height = heightLeft > heightRight ? heightLeft : heightRight
-      return height + 1
+      return Math.max(left, right) + 1
     }
   }
 
