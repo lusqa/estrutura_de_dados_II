@@ -1,4 +1,5 @@
 import Node from './node'
+import { ident } from './util/transversalOperations'
 
 class BinarySourceThree {
   constructor () {
@@ -150,25 +151,47 @@ class BinarySourceThree {
     return maxNode
   }
 
+  _removeLeaf (node) {
+    if (!node.isRoot()) {
+      const child = node.isLeftChild() ? 'leftChild' : 'rightChild'
+      node.parent[child] = null
+      node.parent = null
+    } else {
+      this.root = null
+    }
+  }
+
+  _removeHasOneChild (node) {
+    const child = node.isLeftChild() ? 'leftChild' : 'rightChild'
+    const myChild = node.hasLeftChild() ? 'leftChild' : 'rightChild'
+    if (!node.isRoot()) {
+      node.parent[child] = node[myChild]
+
+      node[myChild].parent = node.parent
+      node[myChild] = null
+    } else {
+      node[myChild].parent = null
+      this.root = node[myChild]
+    }
+    node.parent = null
+  }
+
+  _removeHasTwoChildren (node) {
+    const substitute = this._minimumNode(node.rightChild)
+    this.remove(substitute.key)
+    node.key = substitute.key
+  }
+
   remove (key) {
     const found = this.search(key)
 
     if (found) {
       if (found.isLeaf()) {
-        const child = found.isLeftChild() ? 'leftChild' : 'rightChild'
-        found.parent[child] = null
-        found.parent = null
+        this._removeLeaf(found)
       } else if (found.hasBothChildren()) {
-
+        this._removeHasTwoChildren(found)
       } else {
-        const child = found.isLeftChild() ? 'leftChild' : 'rightChild'
-        const myChild = found.hasLeftChild() ? 'leftChild' : 'rightChild'
-
-        found.parent[child] = found[myChild]
-
-        found[myChild].parent = found.parent
-        found[myChild] = null
-        found.parent = null
+        this._removeHasOneChild(found)
       }
     }
 

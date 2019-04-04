@@ -3,8 +3,8 @@ export const printKey = node => {
 }
 
 export const ident = node => {
-  let ident = ' '.repeat(node.depth())
-  console.log(ident + '' + node.key)
+  let ident = '| '.repeat(node.depth())
+  console.log(ident + '-> ' + node.key)
 }
 
 export const width = (node, op) => {

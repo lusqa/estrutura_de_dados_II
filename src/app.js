@@ -1,11 +1,17 @@
 import Tree from './components/tree/binarySource'
+import { ident } from './components/tree/util/transversalOperations'
 
 const tree = new Tree()
-const keys = [50, 10, 60, 55, 87, 199, 9, 48, 47]
+const keys = [50, 40, 60, 30, 45, 55, 70]
 
 keys.forEach(key => tree.add(key))
 
-// console.log(tree.minimum().key)
-// console.log(tree.maximum().key)
+tree.preOrder(ident)
 
-console.log(tree._sumKeysNode(tree.root))
+keys.forEach(key => {
+  console.log(`Removendo o ${key}...`)
+  tree.remove(key)
+  tree.preOrder(ident)
+})
+
+tree.preOrder(ident)

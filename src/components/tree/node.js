@@ -10,6 +10,18 @@ class Node {
     return this.isRoot() ? 0 : this.parent.depth() + 1
   }
 
+  height () {
+    if (this.isRoot()) {
+      return 0
+    } else {
+      const heightLeft = this.leftChild.height()
+      const heightRight = this.rightChild.height()
+
+      const height = heightLeft > heightRight ? heightLeft : heightRight
+      return height + 1
+    }
+  }
+
   hasBothChildren () {
     return !!this.leftChild && !!this.rightChild
   }
