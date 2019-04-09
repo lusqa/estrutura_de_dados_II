@@ -1,5 +1,5 @@
 import Node from './node'
-import { ident } from './util/transversalOperations'
+// import { printIdentedKey } from './util/transversalOperations'
 
 class BinarySourceThree {
   constructor () {
