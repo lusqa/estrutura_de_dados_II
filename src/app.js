@@ -1,14 +1,17 @@
-import Tree from './components/tree/binarySource'
-import { printIdentedKey } from './components/tree/util/transversalOperations'
+import Graph from './components/graph/graphSource'
 
-const tree = new Tree()
-const keys = [50, 40, 60, 30, 45, 46, 55, 70]
+const graph = new Graph()
 
-keys.forEach(key => tree.add(key))
+const v1 = graph.addVertex(1)
+const v2 = graph.addVertex(2)
+const v3 = graph.addVertex(3)
+const v4 = graph.addVertex(4)
+const v5 = graph.addVertex(5)
+const v6 = graph.addVertex(6)
 
-tree.preOrder(printIdentedKey)
+/* const e1 =  */graph.addEdge(v1, v2, 1)
+/* const e2 =  */graph.addEdge(v3, v4, 1)
+/* const e3 =  */graph.addEdge(v5, v6, 1)
 
-// console.log(tree.root.height())
-const nodeHeight = tree.search(40)
-console.log(tree._heightNode(nodeHeight))
-// console.log(tree.height())
+graph.listVertexes()
+graph.listEdges()
