@@ -1,5 +1,5 @@
-import Vertex from './vertex'
-import Edge from './edge'
+import Vertex from './Vertex'
+import Edge from './Edge'
 
 class Graph {
   constructor () {
@@ -16,7 +16,7 @@ class Graph {
     }
   }
 
-  addEdge (origin, destiny, weight) {
+  addEdge (origin, destiny, weight = null) {
     if (!this.searchEdge(origin, destiny, weight)) {
       const edge = new Edge(origin, destiny, weight)
       this.edges.push(edge)
@@ -44,14 +44,6 @@ class Graph {
     let list = 'V: { '
     this.vertexes.forEach(vertex => {
       list += vertex.element() + ', '
-    })
-    console.log(list + '}')
-  }
-
-  listEdges () {
-    let list = 'E: { '
-    this.edges.forEach(edge => {
-      list += `[ ${edge._origin._key}, ${edge._destiny._key}, ${edge._weight} ]` + ', '
     })
     console.log(list + '}')
   }
