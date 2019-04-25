@@ -26,6 +26,13 @@ class Graph {
   searchVertex (element) {
     return this._vertexes.find(vertex => vertex.element === element)
   }
+
+  // List methods
+  adjacencyList () {
+    let list = '' + this.element
+    this._vertexes.forEach(vertex => console.log(vertex.adjacencyList()))
+    return list
+  }
 }
 
 export default Graph

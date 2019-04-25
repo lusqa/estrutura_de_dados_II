@@ -12,6 +12,18 @@ class Vertex {
   addEdge (edge) {
     this._outcoming.push(edge)
   }
+
+  adjacencyList () {
+    let list = '' + this.element
+    this._outcoming.forEach(edge => {
+      list += ` -> ${edge.opposite(this)}`
+    })
+    return list
+  }
+
+  toString () {
+    return this._element
+  }
 }
 
 export default Vertex
