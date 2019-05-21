@@ -13,26 +13,44 @@ class Graph {
   // Add methods
   addVertex(element) {
     const v = new Vertex(element)
-    this._outgoing.set(v, [])
+    this._outgoing.set(v, new Map())
     if (this._directed) {
-      this._incoming.set(v, [])
+      this._incoming.set(v, new Map())
     }
     return v
   }
 
   addEdge(origin, destination, element = null) {
     const e = new Edge(origin, destination, element)
-    this._outgoing.get(origin).push(e)
+    this._outgoing.get(origin).set(destination, e)
     if (this._directed) {
-      this._incoming.get(destination).push(e)
+      this._incoming.get(destination).set(origin, e)
     }
     return e
   }
 
-  incidentEdges(vertex) {
-    this._outgoing.forEach(v => {
-      console.log(v.get(vertex))
+  incidentEdges(v) {
+    let list = []
+    this._outgoing.forEach(values => {
+      values.forEach((edge, vertex) => {
+        if (vertex === v) {
+          list.push(edge)
+        }
+      })
     })
+    return list
+  }
+
+  incidentEdges1(vertex) {
+    let list = []
+    for (let value of this._outgoing.values()) {
+      for (let [destination, edge] of value.entries()) {
+        if (destination === vertex) {
+          list.push(edge)
+        }
+      }
+    }
+    return list
   }
 }
 
