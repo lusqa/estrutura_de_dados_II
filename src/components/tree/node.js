@@ -1,16 +1,16 @@
 class Node {
-  constructor (key, parent = null, leftChild = null, rightChild = null) {
+  constructor(key, parent = null, leftChild = null, rightChild = null) {
     this.key = key
     this.parent = parent
     this.leftChild = leftChild
     this.rightChild = rightChild
   }
 
-  depth () {
+  depth() {
     return this.isRoot() ? 0 : this.parent.depth() + 1
   }
 
-  height () {
+  height() {
     if (this.isLeaf()) {
       return 0
     } else {
@@ -21,31 +21,31 @@ class Node {
     }
   }
 
-  hasBothChildren () {
+  hasBothChildren() {
     return !!this.leftChild && !!this.rightChild
   }
 
-  hasLeftChild () {
+  hasLeftChild() {
     return !!this.leftChild
   }
 
-  hasRightChild () {
+  hasRightChild() {
     return !!this.rightChild
   }
 
-  isLeaf () {
+  isLeaf() {
     return !this.leftChild && !this.rightChild
   }
 
-  isRoot () {
+  isRoot() {
     return this.parent === null
   }
 
-  isLeftChild () {
+  isLeftChild() {
     return !this.isRoot() ? this.parent.leftChild === this : false
   }
 
-  isRightChild () {
+  isRightChild() {
     return !this.isRoot() ? this.parent.rightChild === this : false
   }
 }

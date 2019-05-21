@@ -1,19 +1,19 @@
 class Vertex {
-  constructor (element) {
+  constructor(element) {
     this._element = element
     this._outcoming = []
     // this._incoming = []
   }
 
-  get element () {
+  get element() {
     return this._element
   }
 
-  addEdge (edge) {
+  addEdge(edge) {
     this._outcoming.push(edge)
   }
 
-  adjacencyList () {
+  adjacencyList() {
     let list = '' + this.element
     this._outcoming.forEach(edge => {
       list += ` -> ${edge.opposite(this)}`
@@ -21,7 +21,7 @@ class Vertex {
     return list
   }
 
-  toString () {
+  toString() {
     return this._element
   }
 }

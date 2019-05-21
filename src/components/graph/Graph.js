@@ -2,13 +2,13 @@ import Vertex from './Vertex'
 import Edge from './Edge'
 
 class Graph {
-  constructor () {
+  constructor() {
     this.vertexes = []
     this.edges = []
   }
 
   // Add methods
-  addVertex (key) {
+  addVertex(key) {
     if (!this.searchVertex(key)) {
       const vertex = new Vertex(key)
       this.vertexes.push(vertex)
@@ -16,7 +16,7 @@ class Graph {
     }
   }
 
-  addEdge (origin, destiny, weight = null) {
+  addEdge(origin, destiny, weight = null) {
     if (!this.searchEdge(origin, destiny, weight)) {
       const edge = new Edge(origin, destiny, weight)
       this.edges.push(edge)
@@ -25,11 +25,11 @@ class Graph {
   }
 
   // Search methods
-  searchVertex (key) {
+  searchVertex(key) {
     return this.vertexes.find(vertex => vertex.key === key)
   }
 
-  searchEdge (origin, destiny, weight) {
+  searchEdge(origin, destiny, weight) {
     return this.edges.find(edges => {
       return (
         edges.origin === origin &&
@@ -40,7 +40,7 @@ class Graph {
   }
 
   // List methods
-  listVertexes () {
+  listVertexes() {
     let list = 'V: { '
     this.vertexes.forEach(vertex => {
       list += vertex.element() + ', '

@@ -16,6 +16,4 @@ export const printIdentedKeyHeight = node => {
   console.log(`${pattern}-> ${node.key}:${node.height()}`)
 }
 
-export const width = (node, op) => {
-
-}
+export const width = (node, op) => {}

@@ -1,9 +1,9 @@
 class Vertex {
-  constructor (key) {
+  constructor(key) {
     this._key = key
   }
 
-  element () {
+  element() {
     return this._key
   }
 }

@@ -1,15 +1,15 @@
 class Edge {
-  constructor (origin, destiny, weight = null) {
+  constructor(origin, destiny, weight = null) {
     this._origin = origin
     this._destiny = destiny
     this._weight = weight
   }
 
-  element () {
+  element() {
     return this._weight ? this._weight : 0
   }
 
-  endpoints () {
+  endpoints() {
     return [this._origin, this._destiny]
   }
 }

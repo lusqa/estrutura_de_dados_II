@@ -2,16 +2,16 @@ import Node from './node'
 // import { printIdentedKey } from './util/transversalOperations'
 
 class BinarySourceThree {
-  constructor () {
+  constructor() {
     this.root = null
     this.COUNT = 10
   }
 
-  add (key) {
-    !this.root ? this.root = new Node(key) : this._addNode(this.root, key)
+  add(key) {
+    !this.root ? (this.root = new Node(key)) : this._addNode(this.root, key)
   }
 
-  _addNode (node, key) {
+  _addNode(node, key) {
     const child = key <= node.key ? 'leftChild' : 'rightChild'
 
     if (!node[child]) {
@@ -21,11 +21,11 @@ class BinarySourceThree {
     }
   }
 
-  search (key) {
+  search(key) {
     return this._searchNode(this.root, key)
   }
 
-  _searchNode (node, key) {
+  _searchNode(node, key) {
     if (!node) return null
 
     if (key < node.key) {
@@ -40,11 +40,11 @@ class BinarySourceThree {
   }
 
   // Tree Traversals
-  preOrder (operation) {
+  preOrder(operation) {
     this._preOrderNode(this.root, operation)
   }
 
-  _preOrderNode (node, operation) {
+  _preOrderNode(node, operation) {
     if (node) {
       operation(node)
       this._preOrderNode(node.leftChild, operation)
@@ -52,11 +52,11 @@ class BinarySourceThree {
     }
   }
 
-  posOrder (operation) {
+  posOrder(operation) {
     this._posOrderNode(this.root, operation)
   }
 
-  _posOrderNode (node, operation) {
+  _posOrderNode(node, operation) {
     if (node) {
       operation(node)
       this._posOrderNode(node.leftChild, operation)
@@ -64,11 +64,11 @@ class BinarySourceThree {
     }
   }
 
-  inOrder (operation) {
+  inOrder(operation) {
     this._inOrderNode(this.root, operation)
   }
 
-  _inOrderNode (node, operation) {
+  _inOrderNode(node, operation) {
     if (node) {
       operation(node)
       this._inOrderNode(node.leftChild, operation)
@@ -76,11 +76,11 @@ class BinarySourceThree {
     }
   }
 
-  breadthFirstSearch (operation) {
+  breadthFirstSearch(operation) {
     this._breadthFirstSearchNode(this.root, operation)
   }
 
-  _breadthFirstSearchNode (node, operation) {
+  _breadthFirstSearchNode(node, operation) {
     let queue = []
     queue.push(node)
 
@@ -99,11 +99,11 @@ class BinarySourceThree {
   }
 
   // Minimum and Maximum
-  minimum () {
+  minimum() {
     return this._minimumNode(this.root)
   }
 
-  _minimumNode (node) {
+  _minimumNode(node) {
     let minNode = node
 
     if (minNode) {
@@ -114,7 +114,7 @@ class BinarySourceThree {
     return minNode
   }
 
-  _minimumNodeRecursive (node) {
+  _minimumNodeRecursive(node) {
     let minNode = node
 
     if (minNode) {
@@ -125,11 +125,11 @@ class BinarySourceThree {
     return minNode
   }
 
-  maximum () {
+  maximum() {
     return this._maxmimumNode(this.root)
   }
 
-  _maxmimumNode (node) {
+  _maxmimumNode(node) {
     let maxNode = node
 
     if (maxNode) {
@@ -140,7 +140,7 @@ class BinarySourceThree {
     return maxNode
   }
 
-  _maxmimumNodeRecursive (node) {
+  _maxmimumNodeRecursive(node) {
     let maxNode = node
 
     if (maxNode) {
@@ -151,7 +151,7 @@ class BinarySourceThree {
     return maxNode
   }
 
-  _removeLeaf (node) {
+  _removeLeaf(node) {
     if (!node.isRoot()) {
       const child = node.isLeftChild() ? 'leftChild' : 'rightChild'
       node.parent[child] = null
@@ -161,7 +161,7 @@ class BinarySourceThree {
     }
   }
 
-  _removeHasOneChild (node) {
+  _removeHasOneChild(node) {
     const child = node.isLeftChild() ? 'leftChild' : 'rightChild'
     const myChild = node.hasLeftChild() ? 'leftChild' : 'rightChild'
     if (!node.isRoot()) {
@@ -176,13 +176,13 @@ class BinarySourceThree {
     node.parent = null
   }
 
-  _removeHasTwoChildren (node) {
+  _removeHasTwoChildren(node) {
     const substitute = this._minimumNode(node.rightChild)
     this.remove(substitute.key)
     node.key = substitute.key
   }
 
-  remove (key) {
+  remove(key) {
     const found = this.search(key)
 
     if (found) {
@@ -198,26 +198,33 @@ class BinarySourceThree {
     return found
   }
 
-  sumKeys () {
+  sumKeys() {
     return this._sumKeysNode(this.root)
   }
 
-  _sumKeysNode (node) {
+  _sumKeysNode(node) {
     let sumTotal = 0
     if (node) {
-      sumTotal = node.key + this._sumKeysNode(node.leftChild) + this._sumKeysNode(node.rightChild)
+      sumTotal =
+        node.key +
+        this._sumKeysNode(node.leftChild) +
+        this._sumKeysNode(node.rightChild)
     }
     return sumTotal
   }
 
-  height () {
+  height() {
     return this._heightNode(this.root)
   }
 
-  _heightNode (node) {
+  _heightNode(node) {
     if (node) {
-      return node.isLeaf() ? 0
-        : Math.max(this._heightNode(node.leftChild), this._heightNode(node.rightChild)) + 1
+      return node.isLeaf()
+        ? 0
+        : Math.max(
+            this._heightNode(node.leftChild),
+            this._heightNode(node.rightChild)
+          ) + 1
     }
   }
 }
