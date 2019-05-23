@@ -4,27 +4,27 @@ import Edge from './Edge'
 class Graph {
   constructor(directed = false) {
     this._directed = directed
-    this._outgoing = new Map()
+    this._outgoing = {}
     if (directed) {
-      this._incoming = new Map()
+      this._incoming = {}
     }
   }
 
   // Add methods
   addVertex(element) {
     const v = new Vertex(element)
-    this._outgoing.set(v, new Map())
+    this._outgoing[v] = {}
     if (this._directed) {
-      this._incoming.set(v, new Map())
+      this._incoming[v] = {}
     }
     return v
   }
 
   addEdge(origin, destination, element = null) {
     const e = new Edge(origin, destination, element)
-    this._outgoing.get(origin).set(destination, e)
+    this._outgoing[origin][destination] = e
     if (this._directed) {
-      this._incoming.get(destination).set(origin, e)
+      this._incoming[origin][destination] = e
     }
     return e
   }
@@ -42,15 +42,7 @@ class Graph {
   }
 
   incidentEdges1(vertex) {
-    let list = []
-    for (let value of this._outgoing.values()) {
-      for (let [destination, edge] of value.entries()) {
-        if (destination === vertex) {
-          list.push(edge)
-        }
-      }
-    }
-    return list
+    return this._outgoing[vertex]
   }
 }
 

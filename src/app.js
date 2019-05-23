@@ -1,4 +1,5 @@
 import Graph from './components/graphListMap/Graph'
+// import Graph from './components/graphListDictonary/Graph'
 
 //         v3
 //      /  |  \
@@ -31,4 +32,5 @@ const e9 = graph.addEdge(v4, v5)
 
 // graph.incidentEdges1(v1)
 console.log(graph.incidentEdges(v0))
-console.log(graph.incidentEdges1(v0))
+// console.log(graph.incidentEdges1(v0))
+// console.log(graph.incidentEdges2(v0))
