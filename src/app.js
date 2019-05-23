@@ -1,4 +1,8 @@
-import Graph from './components/graphListMap/Graph'
+import Graph from './algorithm/graph/map/components/Graph'
+import {
+  DepthFirstSearch as DFS,
+  toStringMap
+} from './algorithm/graph/utils/graphOperations'
 // import Graph from './components/graphListDictonary/Graph'
 
 //         v3
@@ -12,25 +16,25 @@ import Graph from './components/graphListMap/Graph'
 const graph = new Graph()
 
 // vertexes
-const v0 = graph.addVertex('v0')
-const v1 = graph.addVertex('v1')
-const v2 = graph.addVertex('v2')
-const v3 = graph.addVertex('v3')
-const v4 = graph.addVertex('v4')
-const v5 = graph.addVertex('v5')
+const v = graph.addVertex('v')
+const u = graph.addVertex('u')
+const w = graph.addVertex('w')
+const z = graph.addVertex('z')
 
 // edges
-const e1 = graph.addEdge(v0, v1)
-const e2 = graph.addEdge(v1, v2)
-const e3 = graph.addEdge(v2, v3)
-const e4 = graph.addEdge(v3, v4)
-const e5 = graph.addEdge(v4, v0)
-const e6 = graph.addEdge(v0, v5)
-const e7 = graph.addEdge(v2, v5)
-const e8 = graph.addEdge(v3, v5)
-const e9 = graph.addEdge(v4, v5)
+const e = graph.addEdge(v, w, 'e')
+const f = graph.addEdge(v, u, 'f')
+const g = graph.addEdge(u, w, 'g')
+const i = graph.addEdge(w, z, 'i')
+
+const discovered = new Map()
+discovered.set(v, null)
+
+DFS(graph, v, discovered)
+
+toStringMap(discovered)
 
 // graph.incidentEdges1(v1)
-console.log(graph.incidentEdges(v0))
+// console.log(graph.incidentEdges(v0))
 // console.log(graph.incidentEdges1(v0))
 // console.log(graph.incidentEdges2(v0))
