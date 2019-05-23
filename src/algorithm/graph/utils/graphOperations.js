@@ -14,3 +14,9 @@ export const toStringMap = map => {
     console.log({ key, value, index })
   })
 }
+
+/* 
+	TODO: This method should returns the edges between to vertices.
+				It receives the Map with the discovered edges and two vertices (origin, destination)
+*/
+export const constructPath = (discovered, origin, destination) => {}
