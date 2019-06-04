@@ -9,14 +9,41 @@ export const DepthFirstSearch = (graph, vertex, discovered) => {
   })
 }
 
+export const BreadthFirstSearch = (graph, vertex, discovered) => {
+  const queue = [vertex]
+  while (queue.length > 0) {
+    const currentVertex = queue.shift()
+
+    graph.incidentEdges(currentVertex).forEach(edge => {
+      const opposite = edge.opposite(currentVertex)
+
+      if (!discovered.has(opposite)) {
+        discovered.set(opposite, edge)
+        queue.push(opposite)
+      }
+    })
+  }
+}
+
+export const constructPath = (origin, destination, discovered) => {
+  let path = []
+  if (discovered.has(destination)) {
+    let step = destination
+
+    path.push(destination)
+
+    while (step !== origin) {
+      const edge = discovered.get(step)
+      const opposite = edge.opposite(step)
+      path.unshift(opposite)
+      step = opposite
+    }
+  }
+  return path
+}
+
 export const toStringMap = map => {
   map.forEach((key, value, index) => {
     console.log({ key, value, index })
   })
 }
-
-/* 
-	TODO: This method should returns the edges between to vertices.
-				It receives the Map with the discovered edges and two vertices (origin, destination)
-*/
-export const constructPath = (discovered, origin, destination) => {}

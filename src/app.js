@@ -1,7 +1,7 @@
 import Graph from './algorithm/graph/map/components/Graph'
 import {
   DepthFirstSearch as DFS,
-  toStringMap
+  BreadthFirstSearch as BFS
 } from './algorithm/graph/utils/graphOperations'
 // import Graph from './components/graphListDictonary/Graph'
 
@@ -32,9 +32,10 @@ discovered.set(v, null)
 
 DFS(graph, v, discovered)
 
-toStringMap(discovered)
+const discovered1 = new Map()
+discovered1.set(v, null)
+BFS(graph, v, discovered1)
 
-// graph.incidentEdges1(v1)
-// console.log(graph.incidentEdges(v0))
-// console.log(graph.incidentEdges1(v0))
-// console.log(graph.incidentEdges2(v0))
+for (let v of graph.vertices) {
+  console.log(v)
+}

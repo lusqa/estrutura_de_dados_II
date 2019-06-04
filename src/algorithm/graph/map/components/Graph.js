@@ -29,6 +29,15 @@ class Graph {
     return e
   }
 
+  // Getters
+  get vertices() {
+    return this._outgoing.keys()
+  }
+
+  get edges() {
+    return this._outgoing.values()
+  }
+
   incidentEdges(v) {
     return this._outgoing.get(v)
   }
